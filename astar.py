@@ -143,10 +143,17 @@ class AStar():
                 self.map[i][j]=1
         for c in range(cols):
             self.map[rows-1][c]=0
+
+    '''
     def heuristicDistance(self,position):
        a=abs(self.endPos[0]-position[0])
        b=abs(self.endPos[1]-position[1])
        return (a+b)
+    '''
+    def heuristicDistance(self, position):
+        a = self.endPos[0] - position[0]
+        b = self.endPos[1] - position[1]
+        return np.sqrt(a**2 + b**2)  # Utilise numpy pour calculer la racine carrée
 
     def getNeighbors(self,position):
         r=position[0]

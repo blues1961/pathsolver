@@ -41,6 +41,7 @@ class Game():
     game_over=False
     score=0
     done = False
+    stepCount=0
 
     def __init__(self):
         self.astar=AStar(MAP_COLS,MAP_ROWS)
@@ -49,6 +50,7 @@ class Game():
         self.game_over=False
         self.score=0
         self.done=False
+        self.stepCount=0
 
 
 
@@ -66,9 +68,13 @@ class Game():
         print('run logic')
         self.astar.currentNode.print()
         print(self.astar.endPos)
+        self.stepCount += 1
         self.astar.solverStep()
+        print(f'Nombre d\'étapes : {self.stepCount}')  # Afficher le nombre d'étapes
         if self.astar.currentNode.position==self.astar.endPos:
-           self.game_over=True
+            self.path_length = len(self.astar.path)  # Calculer la longueur du chemin
+            print(f'Longueur du chemin le plus court : {self.path_length} nœuds')
+            self.game_over=True
 
 
     def display_frame(self,screen):
